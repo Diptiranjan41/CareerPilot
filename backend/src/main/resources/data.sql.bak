@@ -1,0 +1,84 @@
+-- Delete existing data
+DELETE FROM career_learning_roadmap;
+DELETE FROM career_role_courses;
+DELETE FROM career_role_skills;
+DELETE FROM career_roles;
+DELETE FROM career_domains;
+
+-- Insert Career Domains
+INSERT INTO career_domains (id, domain_name, description, industry_demand_score, created_at) VALUES
+(1, 'Software Development', 'Building applications, systems, and software solutions', 9, CURRENT_TIMESTAMP),
+(2, 'Data Science & AI', 'Data analysis, machine learning, and artificial intelligence', 10, CURRENT_TIMESTAMP),
+(3, 'Cloud & DevOps', 'Cloud infrastructure, automation, and deployment', 9, CURRENT_TIMESTAMP),
+(4, 'Cybersecurity', 'Security, protection, and compliance', 9, CURRENT_TIMESTAMP),
+(5, 'Product Management', 'Product strategy, development, and management', 8, CURRENT_TIMESTAMP),
+(6, 'UI/UX Design', 'User interface and experience design', 8, CURRENT_TIMESTAMP);
+
+-- Insert Career Roles
+INSERT INTO career_roles (id, role_title, domain_id, description, min_cgpa, salary_range_entry, salary_range_senior, job_outlook, growth_rate, remote_work_potential, industry_demand_score, created_at) VALUES
+(1, 'Backend Developer', 1, 'Build and maintain server-side logic, databases, and APIs', 6.5, '6-12 LPA', '15-30 LPA', 'Very High Demand', '22%', 'High', 9, CURRENT_TIMESTAMP),
+(2, 'Full Stack Developer', 1, 'Work on both frontend and backend development', 6.5, '8-15 LPA', '18-35 LPA', 'Very High Demand', '25%', 'Very High', 9, CURRENT_TIMESTAMP),
+(3, 'Data Scientist', 2, 'Extract insights from data using ML and statistics', 7.0, '10-20 LPA', '25-45 LPA', 'Exceptional Demand', '31%', 'High', 10, CURRENT_TIMESTAMP),
+(4, 'AI/ML Engineer', 2, 'Build and deploy machine learning models', 7.5, '12-25 LPA', '30-60 LPA', 'Exceptional Demand', '40%', 'High', 10, CURRENT_TIMESTAMP),
+(5, 'DevOps Engineer', 3, 'Automate deployment and manage cloud infrastructure', 6.5, '8-16 LPA', '20-40 LPA', 'Very High Demand', '26%', 'High', 9, CURRENT_TIMESTAMP),
+(6, 'Cloud Architect', 3, 'Design and manage cloud infrastructure', 7.0, '15-30 LPA', '35-60 LPA', 'Very High Demand', '32%', 'High', 9, CURRENT_TIMESTAMP),
+(7, 'Cybersecurity Analyst', 4, 'Protect systems from cyber threats', 6.5, '6-14 LPA', '18-30 LPA', 'Very High Demand', '33%', 'High', 9, CURRENT_TIMESTAMP),
+(8, 'Product Manager', 5, 'Lead product strategy and development', 7.0, '12-25 LPA', '25-50 LPA', 'High Demand', '15%', 'Moderate', 8, CURRENT_TIMESTAMP),
+(9, 'UI/UX Designer', 6, 'Design user interfaces and experiences', 6.0, '5-12 LPA', '15-25 LPA', 'High Demand', '20%', 'High', 8, CURRENT_TIMESTAMP);
+
+-- Insert Required Skills for each role
+INSERT INTO career_role_skills (role_id, skill_name, is_mandatory, priority_level) VALUES
+-- Backend Developer (role_id=1)
+(1, 'Java', true, 1), (1, 'Spring Boot', true, 1), (1, 'SQL', true, 1), (1, 'REST APIs', true, 1), (1, 'Git', true, 2), (1, 'Microservices', false, 2),
+-- Full Stack Developer (role_id=2)
+(2, 'JavaScript', true, 1), (2, 'React', true, 1), (2, 'Node.js', true, 1), (2, 'MongoDB', true, 1), (2, 'HTML/CSS', true, 2), (2, 'Git', true, 2),
+-- Data Scientist (role_id=3)
+(3, 'Python', true, 1), (3, 'Machine Learning', true, 1), (3, 'Statistics', true, 1), (3, 'SQL', true, 2), (3, 'TensorFlow', false, 2), (3, 'Data Visualization', false, 2),
+-- AI/ML Engineer (role_id=4)
+(4, 'Python', true, 1), (4, 'Deep Learning', true, 1), (4, 'PyTorch/TensorFlow', true, 1), (4, 'NLP', false, 2), (4, 'Computer Vision', false, 2),
+-- DevOps Engineer (role_id=5)
+(5, 'Docker', true, 1), (5, 'Kubernetes', true, 1), (5, 'AWS/GCP', true, 1), (5, 'Jenkins', true, 2), (5, 'Linux', true, 2), (5, 'Terraform', false, 2),
+-- Cloud Architect (role_id=6)
+(6, 'AWS/Azure/GCP', true, 1), (6, 'Terraform', true, 1), (6, 'Kubernetes', true, 1), (6, 'Networking', true, 2), (6, 'Security', true, 2),
+-- Cybersecurity Analyst (role_id=7)
+(7, 'Network Security', true, 1), (7, 'Python', true, 1), (7, 'Linux', true, 1), (7, 'Penetration Testing', true, 2), (7, 'SIEM Tools', false, 2),
+-- Product Manager (role_id=8)
+(8, 'Agile', true, 1), (8, 'Communication', true, 1), (8, 'Analytics', true, 1), (8, 'Leadership', true, 2), (8, 'Market Research', true, 2),
+-- UI/UX Designer (role_id=9)
+(9, 'Figma', true, 1), (9, 'User Research', true, 1), (9, 'Prototyping', true, 1), (9, 'Wireframing', true, 2), (9, 'Adobe XD', false, 2);
+
+-- Insert Learning Roadmap
+INSERT INTO career_learning_roadmap (role_id, step_order, step_title, estimated_weeks) VALUES
+-- Backend Developer Roadmap
+(1, 1, 'Master Core Java and OOP concepts', 4),
+(1, 2, 'Learn Spring Boot Framework', 6),
+(1, 3, 'Build REST APIs with proper authentication', 4),
+(1, 4, 'Master Database Design and SQL', 3),
+(1, 5, 'Learn Microservices architecture', 5),
+(1, 6, 'Build 3 portfolio projects', 6),
+-- Full Stack Developer Roadmap
+(2, 1, 'Master JavaScript ES6+', 4),
+(2, 2, 'Learn React with Hooks and Redux', 6),
+(2, 3, 'Build Node.js backend with Express', 5),
+(2, 4, 'Learn MongoDB database', 3),
+(2, 5, 'Create full-stack MERN projects', 6),
+(2, 6, 'Deploy applications to cloud', 2),
+-- Data Scientist Roadmap
+(3, 1, 'Master Python for Data Science', 4),
+(3, 2, 'Learn NumPy, Pandas, Matplotlib', 4),
+(3, 3, 'Study Machine Learning algorithms', 8),
+(3, 4, 'Learn Statistics and Probability', 4),
+(3, 5, 'Complete Kaggle competitions', 6),
+(3, 6, 'Build ML portfolio projects', 6);
+
+-- Insert Recommended Courses
+INSERT INTO career_role_courses (role_id, course_name, platform, is_free, priority) VALUES
+(1, 'Spring Boot 3 Masterclass', 'Udemy', false, 1),
+(1, 'Java Programming Masterclass', 'Udemy', false, 1),
+(2, 'React - The Complete Guide', 'Udemy', false, 1),
+(2, 'Node.js Bootcamp', 'YouTube', true, 1),
+(3, 'Machine Learning A-Z', 'Udemy', false, 1),
+(3, 'Data Science Bootcamp', 'Coursera', false, 1),
+(4, 'Deep Learning Specialization', 'Coursera', false, 1),
+(5, 'Docker Mastery', 'Udemy', false, 1),
+(5, 'Kubernetes Course', 'YouTube', true, 1);
